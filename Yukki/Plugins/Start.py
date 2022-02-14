@@ -60,14 +60,14 @@ async def welcome(_, message: Message):
                 ) = await get_assistant_details(ran_ass)
                 out = start_pannel()
                 await message.reply_text(
-                    f"Welcome To {MUSIC_BOT_NAME}\n\nPromote me as administrator in your group otherwise I will not function properly.\n\nAssistant Username:- @{ASS_USERNAME}\nAssistant ID:- {ASS_ID}",
+                    f"مرحبًا بك في {MUSIC_BOT_NAME} \ n \ n قدم لي كمسؤول في مجموعتك وإلا فلن أعمل بشكل صحيح. \ n \ n اسم المستخدم المساعد: - @ {ASS_USERNAME} \ n معرف المساعد: - {ASS_ID}",
                     reply_markup=InlineKeyboardMarkup(out[1]),
                 )
             if member.id in ASSIDS:
                 return await remove_active_chat(chat_id)
             if member.id in OWNER_ID:
                 return await message.reply_text(
-                    f"{MUSIC_BOT_NAME}'s Owner[{member.mention}] has just joined your chat."
+                    f"انضم مالك {MUSIC_BOT_NAME} [{member.mention}] للتو إلى محادثتك."
                 )
             if member.id in SUDOERS:
                 return await message.reply_text(
