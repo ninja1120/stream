@@ -49,7 +49,7 @@ __HELP__ = """
 
 
 @app.on_message(
-    filters.command(["pause", "skip", "resume", "انهاء", "ايقاف"])
+    filters.command(["pause", "skip", "resume", "stop", "end"])
     & filters.group
 )
 @AdminRightsCheck
@@ -79,7 +79,7 @@ async def admins(_, message: Message):
         await message.reply_text(
             f"🎧 Voicechat Resumed by {message.from_user.mention}!"
         )
-    if message.command[0][1] == "ايقاف" or message.command[0][1] == "n":
+    if message.command[0][1] == "t" or message.command[0][1] == "n":
         if message.chat.id not in db_mem:
             db_mem[message.chat.id] = {}
         wtfbro = db_mem[message.chat.id]
