@@ -126,7 +126,7 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_1.join_chat("BU_QH")
+            await ASS_CLI_1.join_chat("YY_VP")
             await ASS_CLI_1.join_chat("BU_OQ")
         except:
             pass
@@ -145,7 +145,7 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_2.join_chat("OfficialYukki")
+            await ASS_CLI_2.join_chat("matrix205")
             await ASS_CLI_2.join_chat("YukkiSupport")
         except:
             pass
