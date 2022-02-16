@@ -65,12 +65,12 @@ async def admin_risghts(_, CallbackQuery):
     if command == "pausecb":
         if not await is_music_playing(chat_id):
             return await CallbackQuery.answer(
-                "Music is already Paused", show_alert=True
+                "الموسيقى متوقفة مؤقتًا بالفعل", show_alert=True
             )
         await music_off(chat_id)
         await pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            f"🎧 Voicechat Paused by {CallbackQuery.from_user.mention}!",
+            f"🎧 تم إيقاف الدردشة الصوتية مؤقتًا بواسطة {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
         await CallbackQuery.message.delete()
@@ -78,12 +78,12 @@ async def admin_risghts(_, CallbackQuery):
     if command == "resumecb":
         if await is_music_playing(chat_id):
             return await CallbackQuery.answer(
-                "Music is already Resumed.", show_alert=True
+                "تم استئناف الموسيقى بالفعل.", show_alert=True
             )
         await music_on(chat_id)
         await resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            f"🎧 Voicechat Resumed by {CallbackQuery.from_user.mention}!",
+            f"🎧 Voicechat تم استئنافه بواسطة {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
         await CallbackQuery.message.delete()
@@ -101,7 +101,7 @@ async def admin_risghts(_, CallbackQuery):
         await remove_active_video_chat(chat_id)
         await stop_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            f"🎧 Voicechat End/Stopped by {CallbackQuery.from_user.mention}!",
+            f"🎧 المحادثه الصوتيه انتهت/توقفت بواسطة {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
         await CallbackQuery.message.delete()
@@ -116,12 +116,12 @@ async def admin_risghts(_, CallbackQuery):
             await remove_active_chat(chat_id)
             await remove_active_video_chat(chat_id)
             await CallbackQuery.message.reply_text(
-                f"No more music in __Queue__ \n\nLeaving Voice Chat..Button Used By :- {CallbackQuery.from_user.mention}"
+                f"لا مزيد من الموسيقى في __Queue__ \ n \ n ترك محادثة صوتية .. الزر مستخدم بواسطة: - {CallbackQuery.from_user.mention}"
             )
             await stop_stream(chat_id)
             await CallbackQuery.message.delete()
             await CallbackQuery.answer(
-                "Skipped. No more music in Queue", show_alert=True
+                "تم تخطي. لا مزيد من الموسيقى في قائمة الانتظار", show_alert=True
             )
             return
         else:
@@ -167,7 +167,7 @@ async def admin_risghts(_, CallbackQuery):
                 final_output = await CallbackQuery.message.reply_photo(
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
-                    caption=f"<b>__Skipped Voice Chat__</b>\n\n🎥<b>__Started Playing:__</b> {title} \n⏳<b>__Duration:__</b> {duration_min} \n👤<b>__Requested by:__ </b> {mention}",
+                    caption=f"<b> __تخطي الدردشة الصوتية__ </ b> \ n \ n🎥 <b> __ بدء التشغيل: __ </b> {title} \ n⏳ <b> __المدة: __ </b> {duration_min} \ n👤 <b > __ مطلوب من: __ </b> {الذكر}",
                 )
                 await start_timer(
                     videoid,
@@ -182,7 +182,7 @@ async def admin_risghts(_, CallbackQuery):
                 afk = videoid
                 await CallbackQuery.answer()
                 mystic = await CallbackQuery.message.reply_text(
-                    "Skipped! Please Wait Changing Video Stream...."
+                    "تم تخطي! من فضلك انتظر تغيير دفق الفيديو ...."
                 )
                 read = (str(videoid)).replace("s1s_", "", 1)
                 s = read.split("_+_")
@@ -193,7 +193,7 @@ async def admin_risghts(_, CallbackQuery):
                         await skip_video_stream(chat_id, videoid, 720, mystic)
                     except Exception as e:
                         return await mystic.edit(
-                            f"Error while changing video stream.\n\nPossible Reason:- {e}"
+                            f"خطأ أثناء تغيير دفق الفيديو. \ n \ n السبب المحتمل: - {e}"
                         )
                     buttons = secondary_markup2(
                         "Smex1", CallbackQuery.from_user.id
@@ -204,7 +204,7 @@ async def admin_risghts(_, CallbackQuery):
                         photo="Utils/Telegram.JPEG",
                         reply_markup=InlineKeyboardMarkup(buttons),
                         caption=(
-                            f"<b>__Skipped Video Chat__</b>\n\n👤**__Requested by:__** {mention}"
+                            f"<b> __تخطي محادثة الفيديو__ </ b> \ n \ n👤 ** __ مطلوب بواسطة: __ ** {mention}"
                         ),
                     )
                     await mystic.delete()
@@ -272,7 +272,7 @@ async def admin_risghts(_, CallbackQuery):
                     thumbnail,
                 ) = get_yt_info_id(videoid)
                 await mystic.edit(
-                    f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
+                    f"**{MUSIC_BOT_NAME} أداة التنزيل ** \ n \ n ** العنوان: ** {title [: 50]} \ n \ n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
                 )
                 downloaded_file = await loop.run_in_executor(
                     None, download, videoid, mystic, title
