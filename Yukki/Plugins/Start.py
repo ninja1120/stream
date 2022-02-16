@@ -204,7 +204,7 @@ async def start_markup_check(_, CallbackQuery):
         _check = await get_start(c_id, "assistant")
         volume = _check["volume"]
         await CallbackQuery.edit_message_text(
-            text=f{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
+            text=f"{text}\n\nGroup: {c_title}\nGroup ID: {c_id}\nVolume Level: {volume}%\nAudio Quality: Default Best",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "AU":
