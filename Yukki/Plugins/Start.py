@@ -40,7 +40,7 @@ async def welcome(_, message: Message):
             if member.id == BOT_ID:
                 if chat_id in await blacklisted_chats():
                     await message.reply_text(
-                        f"Hushh, Your chat group[{message.chat.title}] has been blacklisted!\n\nAsk any Sudo User to whitelist your chat"
+                        f"تم وضع مجموعة الدردشة الخاصة بك [{message.chat.title}] في القائمة السوداء! \ n \ n اطلب من أي مستخدم Sudo إضافة الدردشة إلى القائمة البيضاء"
                     )
                     return await app.leave_chat(chat_id)
                 _assistant = await get_assistant(message.chat.id, "assistant")
@@ -60,18 +60,18 @@ async def welcome(_, message: Message):
                 ) = await get_assistant_details(ran_ass)
                 out = start_pannel()
                 await message.reply_text(
-                    f"Welcome To {MUSIC_BOT_NAME}\n\nPromote me as administrator in your group otherwise I will not function properly.\n\nAssistant Username:- @{ASS_USERNAME}\nAssistant ID:- {ASS_ID}",
+                    f"مرحبًا بك في {MUSIC_BOT_NAME} \ n \ n قدم لي كمسؤول في مجموعتك وإلا فلن أعمل بشكل صحيح. \ n \ n اسم المستخدم المساعد: - @ {ASS_USERNAME} \ n معرف المساعد: - {ASS_ID}",
                     reply_markup=InlineKeyboardMarkup(out[1]),
                 )
             if member.id in ASSIDS:
                 return await remove_active_chat(chat_id)
             if member.id in OWNER_ID:
                 return await message.reply_text(
-                    f"{MUSIC_BOT_NAME}'s Owner[{member.mention}] has just joined your chat."
+                    f"انضم مالك {MUSIC_BOT_NAME} [{member.mention}] للتو إلى محادثتك."
                 )
             if member.id in SUDOERS:
                 return await message.reply_text(
-                    f"A member of {MUSIC_BOT_NAME}'s Sudo User[{member.mention}] has just joined your chat."
+                    f"انضم عضو من مستخدم {MUSIC_BOT_NAME} [{member.mention}] إلى محادثتك."
                 )
             return
         except:
@@ -85,7 +85,7 @@ async def useradd(_, message: Message):
     await asyncio.gather(
         message.delete(),
         message.reply_text(
-            f"Thanks for having me in {message.chat.title}.\n{MUSIC_BOT_NAME} is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+            f"شكرًا لاستضافتي في {message.chat.title}. \ n {MUSIC_BOT_NAME} حي. \ n \ n للحصول على أي مساعدة أو مساعدة ، تحقق من مجموعة الدعم وقناتنا.",
             reply_markup=InlineKeyboardMarkup(out[1]),
         ),
     )
@@ -108,7 +108,7 @@ async def settings(_, message: Message):
     await asyncio.gather(
         message.delete(),
         message.reply_text(
-            f"{text}\n\n**Group:** {message.chat.title}\n**Group ID:** {message.chat.id}\n**Volume Level:** {volume}%",
+            f"{text} \ n \ n ** المجموعة: ** {message.chat.title} \ n ** معرف المجموعة: ** {message.chat.id} \ n ** مستوى الصوت: ** {volume}%",
             reply_markup=InlineKeyboardMarkup(buttons),
         ),
     )
@@ -119,7 +119,7 @@ async def okaybhai(_, CallbackQuery):
     await CallbackQuery.answer("Going Back ...")
     out = start_pannel()
     await CallbackQuery.edit_message_text(
-        text=f"Thanks for having me in {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME}is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+        text=f"شكرًا لاستضافتي في {CallbackQuery.message.chat.title}. \ n {MUSIC_BOT_NAME} على قيد الحياة. \ n \ n للحصول على أي مساعدة أو مساعدة ، تحقق من مجموعة الدعم والقناة.",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
@@ -141,7 +141,7 @@ async def settingm(_, CallbackQuery):
     else:
         volume = _check["volume"]
     await CallbackQuery.edit_message_text(
-        text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%",
+        text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}%",
         reply_markup=InlineKeyboardMarkup(buttons),
     )
 
@@ -157,12 +157,12 @@ async def EVE(_, CallbackQuery):
         await CallbackQuery.answer("Changes Saved")
         await add_nonadmin_chat(chat_id)
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\nAdmins Commands Mode to **Everyone**\n\nNow anyone present in this group can skip, pause, resume, stop music.\n\nChanges Done By @{checking}",
+            text=f"{text} \ n \ n وضع أوامر المشرف إلى ** الجميع ** \ n \ n الآن يمكن لأي شخص موجود في هذه المجموعة تخطي الموسيقى وإيقافها مؤقتًا واستئنافها وإيقافها. \ n \ n تم التغييرات بواسطة @ {check}",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
         await CallbackQuery.answer(
-            "Commands Mode is Already Set To EVERYONE", show_alert=True
+            "تم بالفعل تعيين وضع الأوامر على الجميع", show_alert=True
         )
 
 
@@ -175,13 +175,13 @@ async def AMS(_, CallbackQuery):
     is_non_admin = await is_nonadmin_chat(chat_id)
     if not is_non_admin:
         await CallbackQuery.answer(
-            "Commands Mode is Already Set To ADMINS ONLY", show_alert=True
+            "تم بالفعل تعيين وضع الأوامر على ADMINS فقط", show_alert=True
         )
     else:
         await CallbackQuery.answer("Changes Saved")
         await remove_nonadmin_chat(chat_id)
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\nSet Commands Mode to **Admins**\n\nNow only Admins present in this group can skip, pause, resume, stop musics.\n\nChanges Done By @{checking}",
+            text=f"{text} \ n \ n تعيين وضع الأوامر على ** المشرفون ** \ n \ n الآن يمكن للمشرفين الموجودين في هذه المجموعة فقط تخطي الموسيقى وإيقافها مؤقتًا واستئنافها وإيقافها. \ n \ n تم إجراء التغييرات بواسطة @ {check}",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
@@ -197,14 +197,14 @@ async def start_markup_check(_, CallbackQuery):
     c_id = CallbackQuery.message.chat.id
     chat_id = CallbackQuery.message.chat.id
     if command == "AQ":
-        await CallbackQuery.answer("Already in Best Quality", show_alert=True)
+        await CallbackQuery.answer("بالفعل في أفضل جودة", show_alert=True)
     if command == "AV":
         await CallbackQuery.answer("Bot Settings ...")
         text, buttons = volmarkup()
         _check = await get_start(c_id, "assistant")
         volume = _check["volume"]
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "AU":
@@ -212,11 +212,11 @@ async def start_markup_check(_, CallbackQuery):
         text, buttons = usermarkup()
         is_non_admin = await is_nonadmin_chat(chat_id)
         if not is_non_admin:
-            current = "Admins Only"
+            current = "المشرفون فقط"
         else:
             current = "Everyone"
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n\nCurrently Who Can Use {MUSIC_BOT_NAME}:- **{current}**\n\n**⁉️ What is This?**\n\n**👥 Everyone :-**Anyone can use {MUSIC_BOT_NAME}'s commands(skip, pause, resume etc) present in this group.\n\n**🙍 Admin Only :-**  Only the admins and authorized users can use all commands of {MUSIC_BOT_NAME}.",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n \ n حاليًا من يمكنه استخدام {MUSIC_BOT_NAME}: - ** {current} ** \ n \ n ** ⁉️ ما هذا؟ ** \ n \ n ** 👥 الجميع: - ** يمكن لأي شخص استخدام أوامر {MUSIC_BOT_NAME} (تخطي ، إيقاف مؤقت ، استئناف ، إلخ) الموجودة في هذه المجموعة. \ n \ n ** 🙍 المسؤول فقط: - ** المسؤولون والمفوضون فقط يمكن للمستخدمين استخدام جميع أوامر {MUSIC_BOT_NAME}.",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "Dashboard":
@@ -225,7 +225,7 @@ async def start_markup_check(_, CallbackQuery):
         _check = await get_start(c_id, "assistant")
         volume = _check["volume"]
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n\nCheck {MUSIC_BOT_NAME}'s System Stats In the DashBoard Here! More Functions adding very soon! Keep on Checking Support Channel.",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n \ n تحقق من {MUSIC_BOT_NAME} إحصائيات النظام في لوحة القيادة هنا! سيتم إضافة المزيد من الوظائف قريبًا جدًا! استمر في التحقق من قناة الدعم.",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "Custommarkup":
@@ -234,7 +234,7 @@ async def start_markup_check(_, CallbackQuery):
         _check = await get_start(c_id, "assistant")
         volume = _check["volume"]
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "LV":
@@ -266,7 +266,7 @@ async def start_markup_check(_, CallbackQuery):
         await save_start(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "HV":
@@ -282,7 +282,7 @@ async def start_markup_check(_, CallbackQuery):
         await save_start(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "VAM":
@@ -294,11 +294,11 @@ async def start_markup_check(_, CallbackQuery):
             await Yukki.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("لا توجد مكالمة جماعية نشطة ...")
         await save_start(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "PTEN":
@@ -316,11 +316,11 @@ async def start_markup_check(_, CallbackQuery):
             await Yukki.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("لا توجد مكالمة جماعية نشطة ...")
         await save_start(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "MTEN":
@@ -338,11 +338,11 @@ async def start_markup_check(_, CallbackQuery):
             await Yukki.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("لا توجد مكالمة جماعية نشطة ...")
         await save_start(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "PTF":
@@ -360,11 +360,11 @@ async def start_markup_check(_, CallbackQuery):
             await Yukki.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("Nلا توجد مكالمة جماعية نشطة ...")
         await save_start(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "MTF":
@@ -382,11 +382,11 @@ async def start_markup_check(_, CallbackQuery):
             await Yukki.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("لا توجد مكالمة جماعية نشطة ...")
         await save_start(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "PFZ":
@@ -404,11 +404,11 @@ async def start_markup_check(_, CallbackQuery):
             await Yukki.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("لا توجد مكالمة جماعية نشطة ....")
         await save_start(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "MFZ":
@@ -426,11 +426,11 @@ async def start_markup_check(_, CallbackQuery):
             await Yukki.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("لا توجد مكالمة جماعية نشطة ...")
         await save_start(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text} \ n \ n ** المجموعة: ** {c_title} \ n ** معرف المجموعة: ** {c_id} \ n ** مستوى الصوت: ** {volume}٪ \ n ** جودة الصوت: ** أفضل الافتراضي",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "USERLIST":
@@ -439,13 +439,13 @@ async def start_markup_check(_, CallbackQuery):
         _playlist = await get_authuser_names(CallbackQuery.message.chat.id)
         if not _playlist:
             return await CallbackQuery.edit_message_text(
-                text=f"{text}\n\nNo Authorized Users Found\n\nYou can allow any non-admin to use my admin commands by /auth and delete by using /unauth",
+                text=f"{text} \ n \ n لم يتم العثور على مستخدمين معتمدين \ n \ n يمكنك السماح لأي شخص غير مسؤول باستخدام أوامر المسؤول الخاصة بي عن طريق / المصادقة والحذف باستخدام / unauth",
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
         else:
             j = 0
             await CallbackQuery.edit_message_text(
-                "Fetching Authorised Users... Please Wait"
+                "إحضار المستخدمين المصرح لهم ... الرجاء الانتظار"
             )
             msg = f"**Authorised Users List[AUL]:**\n\n"
             for note in _playlist:
