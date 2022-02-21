@@ -36,7 +36,7 @@ __MODULE__ = "Admin"
 __HELP__ = """
 
 
-/pause - Pause the playing music on voice chat.
+/وقف - Pause the playing music on voice chat.
 
 /resume - Resume the paused music on voice chat.
 
@@ -49,7 +49,7 @@ __HELP__ = """
 
 
 @app.on_message(
-    filters.command(["pause", "skip", "resume", "stop", "end"])
+    filters.command(["وقف", "skip", "resume", "stop", "end"])
     & filters.group
 )
 @AdminRightsCheck
