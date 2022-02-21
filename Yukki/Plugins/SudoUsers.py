@@ -251,11 +251,11 @@ async def logger(_, message):
     chat_id = message.chat.id
     state = message.text.split(None, 1)[1].strip()
     state = state.lower()
-    if state == "enable":
+    if state == "تفعيل":
         user_id = 5
         await add_on(user_id)
         await message.reply_text("Enabled Logging")
-    elif state == "disable":
+    elif state == "الغاء التفعيل":
         user_id = 5
         await add_off(user_id)
         await message.reply_text("Logging Disabled")
