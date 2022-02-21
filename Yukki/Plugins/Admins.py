@@ -71,7 +71,7 @@ async def admins(_, message: Message):
         await message.reply_text(
             f"🎧 Voicechat Paused by {message.from_user.mention}!"
         )
-     if message.command[0][1] == "e":
+    if message.command[0][1] == "e":
         if await is_music_playing(message.chat.id):
             return await message.reply_text("Music is already Playing.")
         await music_on(chat_id)
