@@ -154,7 +154,7 @@ async def set_pfp(client, message):
 
 
 @Client.on_message(
-    filters.command("bio", prefixes=ASSISTANT_PREFIX)
+    filters.command("بايو", prefixes=ASSISTANT_PREFIX)
     & filters.user(SUDOERS)
     & ~filters.user("me")
     & ~filters.me
