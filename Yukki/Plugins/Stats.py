@@ -41,7 +41,7 @@ async def bot_sys_stats():
     return stats
 
 
-@app.on_message(filters.command("stats") & ~filters.edited)
+@app.on_message(filters.command("الاحصائيات") & ~filters.edited)
 async def gstats(_, message):
     start = datetime.now()
     try:
@@ -72,7 +72,7 @@ Ping: `⚡{resp} ms`
 async def stats_markup(_, CallbackQuery):
     command = CallbackQuery.matches[0].group(1)
     if command == "sys_stats":
-        await CallbackQuery.answer("Getting System Stats...", show_alert=True)
+        await CallbackQuery.answer("جار الحصول علي احصائيات النظام...", show_alert=True)
         sc = platform.system()
         arch = platform.machine()
         p_core = psutil.cpu_count(logical=False)
@@ -98,7 +98,7 @@ async def stats_markup(_, CallbackQuery):
         smex = f"""
 [•]<u>**System Stats**</u>
 
-**{MUSIC_BOT_NAME} Uptime:** {uptime}
+**{MUSIC_BOT_NAME} مده التشغيل:** {uptime}
 **System Process:** Online
 **Platform:** {sc}
 **Architecture:** {arch}
