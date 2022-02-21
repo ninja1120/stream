@@ -239,13 +239,13 @@ async def maintenance(_, message):
 ## Logger
 
 
-@app.on_message(filters.command("logger") & filters.user(SUDOERS))
+@app.on_message(filters.command("السجل") & filters.user(SUDOERS))
 async def logger(_, message):
     if LOG_SESSION == "None":
         return await message.reply_text(
             "No Logger Account Defined.\n\nPlease Set <code>LOG_SESSION</code> var and then try loggging."
         )
-    usage = "**Usage:**\n/logger [enable|disable]"
+    usage = "**Usage:**\n/logger [تفعيل|الغاء التفعيل]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
     chat_id = message.chat.id
