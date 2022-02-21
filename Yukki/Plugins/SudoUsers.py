@@ -255,7 +255,7 @@ async def logger(_, message):
         user_id = 5
         await add_on(user_id)
         await message.reply_text("Enabled Logging")
-    elif state == "الغاء التفعيل":
+    elif state == "الغاء":
         user_id = 5
         await add_off(user_id)
         await message.reply_text("Logging Disabled")
