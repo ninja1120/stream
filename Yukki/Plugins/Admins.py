@@ -49,7 +49,7 @@ __HELP__ = """
 
 
 @app.on_message(
-    filters.command(["paused", "skip", "resume", "stop", "end", "ايقاف"])
+    filters.command(["paused", "skip", "resume", "stop", "end","تخطي", "ايقاف"])
     & filters.group
 )
 @AdminRightsCheck
@@ -63,7 +63,7 @@ async def admins(_, message: Message):
             "Nothing is playing on voice chat. No Active Voice Chat Found"
         )
     chat_id = message.chat.id
-    if message.command[0][1] == "وقف":
+if message.command[0][1] == "a" or message.command[0][1] == "خ" or message.command[0][1] == "تخطي":
         if not await is_music_playing(message.chat.id):
             return await message.reply_text("Music is already Paused.")
         await music_off(chat_id)
