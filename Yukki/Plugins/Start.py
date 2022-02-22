@@ -60,7 +60,7 @@ async def welcome(_, message: Message):
                 ) = await get_assistant_details(ran_ass)
                 out = start_pannel()
                 await message.reply_text(
-                    f"مرحبًا بك في {MUSIC_BOT_NAME} \ n \ n قدم لي كمسؤول في مجموعتك وإلا فلن أعمل بشكل صحيح. \ n \ n اسم المستخدم المساعد: - @ {ASS_USERNAME} \ n معرف المساعد: - {ASS_ID}",
+                    f"مرحبا بك في {MUSIC_BOT_NAME}\n\nقم بترقيتي كمسؤول في مجموعتك وإلا فلن أعمل بشكل صحيح.\n\nاسم مستخدم المساعد: - @{ASS_USERNAME}\nمعرف المساعد: - {ASS_ID}",
                     reply_markup=InlineKeyboardMarkup(out[1]),
                 )
             if member.id in ASSIDS:
