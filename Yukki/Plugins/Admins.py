@@ -49,7 +49,7 @@ __HELP__ = """
 
 
 @app.on_message(
-    filters.command(["paused", "skip", "resume", "stop", "end","تخطي", "ايقاف"])
+    filters.command(["paused", "skip", "resume", "stop", "end","تخطي","كمل","وقف","ايقاف",])
     & filters.group
 )
 @AdminRightsCheck
