@@ -63,7 +63,7 @@ async def admins(_, message: Message):
             "Nothing is playing on voice chat. No Active Voice Chat Found"
         )
     chat_id = message.chat.id
-    if message.command[0][1] == "a" or message.command[0][1] == "خ" or message.command[0][1] == "تخطي":
+    if message.command[0][1] == "a" or message.command[0][1] == "ق" or message.command[0][1] == "وقف":
         if not await is_music_playing(message.chat.id):
             return await message.reply_text("Music is already Paused.")
         await music_off(chat_id)
@@ -71,7 +71,7 @@ async def admins(_, message: Message):
         await message.reply_text(
             f"🎧 Voicechat Paused by {message.from_user.mention}!"
         )
-    if message.command[0][1] == "e":
+    if message.command[0][1] == "e" or message.command[0][1] == "م" or message.command[0][1] == "كمل":
         if await is_music_playing(message.chat.id):
             return await message.reply_text("Music is already Playing.")
         await music_on(chat_id)
@@ -94,7 +94,7 @@ async def admins(_, message: Message):
         await message.reply_text(
             f"🎧 Voicechat End/Stopped by {message.from_user.mention}!"
         )
-    if message.command[0][1] == "k":
+    if message.command[0][1] == "k" or message.command[0][1] == "خ" or message.command[0][1] == "تخطي":
         if message.chat.id not in db_mem:
             db_mem[message.chat.id] = {}
         wtfbro = db_mem[message.chat.id]
