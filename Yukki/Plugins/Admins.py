@@ -38,11 +38,11 @@ __HELP__ = """
 
 /وقف - Pause the playing music on voice chat.
 
-/resume - Resume the paused music on voice chat.
+/كمل - Resume the paused music on voice chat.
 
-/skip - Skip the current playing music on voice chat
+/تخطي - Skip the current playing music on voice chat
 
-/stop - Stop the playout.
+/ايقاف - Stop the playout.
 
 /queue - Check queue list.
 """
