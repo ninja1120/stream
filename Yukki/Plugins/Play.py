@@ -35,7 +35,7 @@ loop = asyncio.get_event_loop()
 
 
 @app.on_message(
-    filters.command(["play", f"play@{BOT_USERNAME}"]) & filters.group
+    filters.command(["شغل", f"play@{BOT_USERNAME}"]) & filters.group
 )
 @checker
 @logging
@@ -47,9 +47,9 @@ async def play(_, message: Message):
     do = requests.get(
         f"https://api.telegram.org/bot5041714427:AAF_NhXqKUOO9qscStjd74BJRi3gkIefKeA/getChatMember?chat_id=@YY_VP&user_id={message.from_user.id}").text
     if do.count("left") or do.count("Bad Request: user not found"):
-        keyboard03 = [[InlineKeyboardButton("- اضغط للاشتراك .", url='https://t.me/YY_VP')]]
+        keyboard03 = [[InlineKeyboardButton("- للاشتراك 💞 .", url='https://t.me/YY_VP')]]
         reply_markup03 = InlineKeyboardMarkup(keyboard03)
-        await message.reply_text('- اشترك بقناة البوت لتستطيع تشغيل الاغاني  .',
+        await message.reply_text('- اشترك بقناة البوت لتشغيل لتستطيع تشغيل الاغاني 👇  .',
                                  reply_markup=reply_markup03)
     else:
         if message.chat.id not in db_mem:
