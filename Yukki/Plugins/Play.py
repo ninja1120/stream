@@ -42,6 +42,8 @@ loop = asyncio.get_event_loop()
 @AssistantAdd
 async def play(_, message: Message):
     await message.delete()
+    
+    
     do = requests.get(
 
         f"https://api.telegram.org/bot[5041714427:AAF_NhXqKUOO9qscStjd74BJRi3gkIefKeA]/getChatMember?chat_id=@YY_VP&user_id={message.from_user.id}").text
