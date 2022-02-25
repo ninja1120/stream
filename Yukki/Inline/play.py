@@ -254,7 +254,7 @@ def audio_markup(videoid, user_id, current_time, total_time):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"{total_time} ------------------ {current_time}",
+                text=f"{total_time} ----------𝗦𝗢𝗨𝗥𝗖𝗘 𝗠𝗔𝗧𝗥𝗜𝗫---------- {current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
             )
         ],
